@@ -1,2 +1,2 @@
-# Training
-Training project 
+# Training - Web Project
+
