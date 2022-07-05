@@ -28,6 +28,7 @@ public class Login_page {
         String CurrentUrl = driver.getCurrentUrl();
         Assert.assertEquals(CurrentUrl,"https://app.auditate.mx/panel/principal");
     }
+
     public void unsuccessLogin(String Alias, String Email,String Pass){
         driver.findElement(By.cssSelector("input[placeholder='Alias de la Empresa']")).sendKeys(Alias);
         driver.findElement(By.cssSelector("input[placeholder='Correo Electrónico']")).sendKeys(Email);
@@ -35,6 +36,8 @@ public class Login_page {
         driver.findElement(By.cssSelector("button[type=submit]")).click();
         //Validation to login successfully
         driver.findElement(By.xpath("//div[text()='Ocurrió un error']")).isDisplayed();
+        String textError = driver.findElement(By.xpath("//div[@class='sc-bqiRlB kbNZbF']")).getText();
+        Assert.assertEquals(textError,"Ocurrió un error");
     }
     public void search(String text) {
         WebDriverWait wait = new WebDriverWait(driver, 20);
