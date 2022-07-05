@@ -16,10 +16,23 @@ public class Login_page {
         this.driver = driver;
     }
 
+    public void successLogin(String Alias, String Email,String Pass){
+        driver.findElement(By.cssSelector("input[placeholder='Alias de la Empresa']")).sendKeys(Alias);
+        driver.findElement(By.cssSelector("input[placeholder='Correo Electrónico']")).sendKeys(Email);
+        driver.findElement(By.cssSelector("input[placeholder='Contraseña']")).sendKeys(Pass);
+        driver.findElement(By.cssSelector("button[type=submit]")).click();
+        //Validation to login successfully
+        driver.findElement(By.id("panel-settings-button")).isDisplayed();
+        driver.findElement(By.cssSelector("button.sc-bUKjYF.joRqPq")).isDisplayed();
+        //Assertions
+        String CurrentUrl = driver.getCurrentUrl();
+        Assert.assertEquals(CurrentUrl,"https://app.auditate.mx/panel/principal");
+    }
+
     public void search(String text) {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOfElementLocated(searchBar));
-        driver.findElement(searchBar).sendKeys(text, Keys.RETURN);
+        driver.findElement(searchBar).sendKeys(text, Keys.ENTER);
     }
 
     public void validateNumbersOfLinks() {

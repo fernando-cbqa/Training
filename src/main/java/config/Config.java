@@ -21,8 +21,8 @@ public class Config {
             driver = new FirefoxDriver();
         }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
-        driver.get("https://www.google.com/");
-        driver.manage().window().maximize();
+        driver.get("https://app.auditate.mx/");
+       // driver.manage().window().maximize();
     }
     @AfterSuite
     public void afterTest(){
