@@ -1,0 +1,15 @@
+<suite name="AutomationProject" parallel="tests" thread-count="15">
+
+    <parameter name="author" value="Fernando"/>
+    <parameter name="browserName" value="chrome"/>
+    <parameter name="Version" value="87.0.4280.88 "/>
+
+    <test name="Smoke Test">
+        <parameter name="platformName" value="Web"/>
+        <classes>
+            <class name="CP001">
+            </class>
+
+    </classes>
+    </test>
+</suite>
