@@ -7,7 +7,7 @@
     <test name="Smoke Test">
         <parameter name="platformName" value="Web"/>
         <classes>
-            <class name="CP001">
+            <class name="LoginTest">
             </class>
 
     </classes>
