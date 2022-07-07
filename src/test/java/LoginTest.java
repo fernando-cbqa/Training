@@ -8,12 +8,17 @@ import pageObject.Login_page;
  *
  */
 
-public class CP001 extends Config {
+public class LoginTest extends Config {
 
     @Test(testName = "TestCase001", description = "validate a successful search and get the numbers of links")
     public void searchFunction() {
         Login_page login = new Login_page(driver);
         // login.successLogin("ashprod","arantza@cbqasolutions.com","Admin123.");
+        login.unsuccessLogin("ashprod","arantza@cbqasolutions.com","Admin123....");
+    }
+    @Test(testName = "Login Unsuccessful", description = "validate a unsuccessful login")
+    public void loginUnsuccessful() {
+        Login_page login = new Login_page(driver);
         login.unsuccessLogin("ashprod","arantza@cbqasolutions.com","Admin123....");
     }
 }
