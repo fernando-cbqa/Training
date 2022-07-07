@@ -22,7 +22,7 @@ public class Config {
         }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
         driver.get("https://app.auditate.mx/");
-       // driver.manage().window().maximize();
+        driver.manage().window().maximize();
     }
     @AfterSuite
     public void afterTest(){
