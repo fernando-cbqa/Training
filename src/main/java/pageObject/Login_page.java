@@ -1,28 +1,30 @@
 package pageObject;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
 import java.util.List;
 
 public class Login_page {
 
     private final WebDriver driver;
+    By searchBar = By.name("q");
+    @FindBy(css = "input[placeholder='Alias de la Empresa']")
+    WebElement InputAliasEmpresa;
+
     public Login_page(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    By searchBar = By.name("q");
-    @FindBy(css="input[placeholder='Alias de la Empresa']")
-    WebElement InputAliasEmpresa;
 
-
-
-
-    public void successLogin(String Alias, String Email,String Pass){
+    public void successLogin(String Alias, String Email, String Pass) {
         InputAliasEmpresa.sendKeys(Alias);
         driver.findElement(By.cssSelector("input[placeholder='Alias de la Empresa']")).sendKeys(Alias);
         driver.findElement(By.cssSelector("input[placeholder='Correo Electrónico']")).sendKeys(Email);
@@ -33,7 +35,7 @@ public class Login_page {
         driver.findElement(By.cssSelector("button.sc-bUKjYF.joRqPq")).isDisplayed();
         //Assertions
         String CurrentUrl = driver.getCurrentUrl();
-        Assert.assertEquals(CurrentUrl,"https://app.auditate.mx/panel/principal");
+        Assert.assertEquals(CurrentUrl, "https://app.auditate.mx/panel/principal");
     }
 
     public void unsuccessLogin(String Alias, String Email,String Pass){
