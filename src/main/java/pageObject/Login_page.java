@@ -19,6 +19,29 @@ public class Login_page {
     @FindBy(css = "input[placeholder='Alias de la Empresa']")
     WebElement InputAliasEmpresa;
 
+    @FindBy(css = "input[placeholder='Correo Electrónico']")
+    WebElement InputCorreoElectronico;
+
+    @FindBy(css = "input[placeholder='Contraseña']")
+    WebElement InputContrasena;
+
+    @FindBy(css = "button[type=submit]")
+    WebElement ButtonSubmit;
+
+    @FindBy(id = "panel-settings-button")
+    WebElement ButtonPanel;
+
+    //TODO: Maintenance
+    @FindBy(css = "button.sc-bUKjYF.joRqPq")
+    WebElement Button;
+
+    @FindBy(xpath = "//div[text()='Ocurrió un error']")
+    WebElement TxtOcurrioUnError;
+
+    //TODO: Maintenance
+    @FindBy(id = "//div[@class='sc-bqiRlB kbNZbF']")
+    WebElement TxtError;
+
     public Login_page(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -26,26 +49,24 @@ public class Login_page {
 
     public void successLogin(String Alias, String Email, String Pass) {
         InputAliasEmpresa.sendKeys(Alias);
-        driver.findElement(By.cssSelector("input[placeholder='Alias de la Empresa']")).sendKeys(Alias);
-        driver.findElement(By.cssSelector("input[placeholder='Correo Electrónico']")).sendKeys(Email);
-        driver.findElement(By.cssSelector("input[placeholder='Contraseña']")).sendKeys(Pass);
-        driver.findElement(By.cssSelector("button[type=submit]")).click();
+        InputCorreoElectronico.sendKeys(Email);
+        InputContrasena.sendKeys(Pass);
+        ButtonSubmit.click();
         //Validation to login successfully
-        driver.findElement(By.id("panel-settings-button")).isDisplayed();
-        driver.findElement(By.cssSelector("button.sc-bUKjYF.joRqPq")).isDisplayed();
+        ButtonPanel.isDisplayed();
         //Assertions
         String CurrentUrl = driver.getCurrentUrl();
         Assert.assertEquals(CurrentUrl, "https://app.auditate.mx/panel/principal");
     }
 
     public void unsuccessLogin(String Alias, String Email,String Pass){
-        driver.findElement(By.cssSelector("input[placeholder='Alias de la Empresa']")).sendKeys(Alias);
-        driver.findElement(By.cssSelector("input[placeholder='Correo Electrónico']")).sendKeys(Email);
-        driver.findElement(By.cssSelector("input[placeholder='Contraseña']")).sendKeys(Pass);
-        driver.findElement(By.cssSelector("button[type=submit]")).click();
+        InputAliasEmpresa.sendKeys(Alias);
+        InputCorreoElectronico.sendKeys(Email);
+        InputContrasena.sendKeys(Pass);
+        ButtonSubmit.click();
         //Validation to login successfully
-        driver.findElement(By.xpath("//div[text()='Ocurrió un error']")).isDisplayed();
-        String textError = driver.findElement(By.xpath("//div[@class='sc-bqiRlB kbNZbF']")).getText();
+        TxtOcurrioUnError.isDisplayed();
+        String textError = TxtError.getText();
         Assert.assertEquals(textError,"Ocurrió un error");
     }
     public void search(String text) {
