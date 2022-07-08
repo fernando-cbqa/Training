@@ -1,0 +1,8 @@
+#skip folders
+.idea/
+node_modules/
+target/
+#skip files
+.DS_Store
+#skip all the files ending with
+*.log

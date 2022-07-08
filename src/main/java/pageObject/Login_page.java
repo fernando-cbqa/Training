@@ -1,6 +1,8 @@
 package pageObject;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -9,14 +11,19 @@ import java.util.List;
 public class Login_page {
 
     private final WebDriver driver;
-
-    By searchBar = By.name("q");
-
     public Login_page(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
+    By searchBar = By.name("q");
+    @FindBy(css="input[placeholder='Alias de la Empresa']")
+    WebElement InputAliasEmpresa;
+
+
+
 
     public void successLogin(String Alias, String Email,String Pass){
+        InputAliasEmpresa.sendKeys(Alias);
         driver.findElement(By.cssSelector("input[placeholder='Alias de la Empresa']")).sendKeys(Alias);
         driver.findElement(By.cssSelector("input[placeholder='Correo Electrónico']")).sendKeys(Email);
         driver.findElement(By.cssSelector("input[placeholder='Contraseña']")).sendKeys(Pass);
