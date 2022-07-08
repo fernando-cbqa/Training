@@ -1,0 +1,7 @@
+#skip folders
+.idea/
+target/
+#skip files
+.DS_Store
+#skip all the files ending with
+*.log
